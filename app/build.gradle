@@ -46,6 +46,5 @@ dependencies {
     // Import the Firebase BoM (see: https://firebase.google.com/docs/android/learn-more#bom)
     implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
 
-    // Firebase Cloud Messaging (Kotlin)
-    implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation 'com.github.trycourier:courier-android:2.0.2'
 }
