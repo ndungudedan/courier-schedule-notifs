@@ -67,7 +67,7 @@ class MainActivity : CourierActivity() {
                         Courier.shared.signIn(
                             accessToken = "YourAccessToken",
                             clientKey = "YourClientKey",
-                            userId = "tecnoUser" //The user id should be unique
+                            userId = "appUser2" //The user id should be unique
                         )
                         val fcmToken= Courier.shared.getFCMToken()
                         Log.d("token",fcmToken?:"")
