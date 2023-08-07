@@ -43,7 +43,7 @@ class MainActivity : CourierActivity() {
             binding.notification.text = count.toString()
         })
 
-        //Display the UI depending on the user status
+        // Display the UI depending on the user status
         if (Courier.shared.isUserSignedIn) {
             binding.signInBtn.text = "Sign Out"
             binding.user.text = "Welcome ${Courier.shared.userId}"
@@ -55,19 +55,19 @@ class MainActivity : CourierActivity() {
             if (!Courier.shared.isUserSignedIn) {
                 Log.d("BTN CLICK: ", "Signing APP User IN")
 
-                // Shows the request notification popup required in Android 13 and above
+                // Show the request notification popup required in Android 13 and above
                 this.requestNotificationPermission()
 
                 val isGranted = this.isPushPermissionGranted ?: false
 
                 if (isGranted) {
                     lifecycleScope.launch {
-                        // Saves credentials locally and accesses the Courier API with them
-                        // Uploads push notification devices tokens to Courier if needed
+                        // Save credentials locally and access the Courier API with them
+                        // Upload push notification device tokens to Courier if needed
                         Courier.shared.signIn(
                             accessToken = "YourAccessToken",
                             clientKey = "YourClientKey",
-                            userId = "appUser2" //The user id should be unique
+                            userId = "tecnoUser" // The user ID should be unique
                         )
                         val fcmToken= Courier.shared.getFCMToken()
                         Log.d("token",fcmToken?:"")
@@ -78,14 +78,14 @@ class MainActivity : CourierActivity() {
             } else {
                 Log.d("BTN CLICK: ", "Signing User Out")
                 lifecycleScope.launch {
-                    // Removes the locally saved credentials
-                    // Deletes the user's push notification device tokens in Courier if needed
+                    // Remove the locally saved credentials
+                    // Delete the user's push notification device tokens in Courier if needed
                     Courier.shared.signOut()
                 }
             }
         }
 
-        //Listens to changes in the Courier authentication status and updates the UI
+        // Listen to changes in the Courier authentication status and update the UI
         listener = Courier.shared.addAuthenticationListener { userId ->
             runOnUiThread {
                 Log.d("Courier Listener: ", userId ?: "No userId found")
